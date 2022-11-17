@@ -1,13 +1,13 @@
-import React from "react"
+import React from "react";
 
 function LoginForm(){
     return (
         <form className="FormElement"> 
 
-            <label for="userName">User Name </label>
+            <label htmlFor="userName">User Name </label>
             <input type="text" name ="userName" /> 
 
-            <Label for= "userPassword">Password</Label>
+            <label htmlFor= "userPassword">Password</label>
             <input type="password" name ="userPassword" /> 
 
             <button type="submit">Submit</button> 

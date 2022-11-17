@@ -30,10 +30,11 @@ nav p {
   flex-direction: column; 
 }
 
-
 .FormElement input {
+  font-size: 16px;
 
 }
+
 .FormElement label {
   font-weight: bold; 
   margin-bottom: 8px; 

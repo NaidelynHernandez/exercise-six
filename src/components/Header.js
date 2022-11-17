@@ -7,7 +7,7 @@ function Header(){
             <a href="/">
                 <p> home</p>
             </a>
-            <a href ="/Logim">
+            <a href ="/Login">
                 <p> Login</p>
             </a>
             <a href="/create"> 
