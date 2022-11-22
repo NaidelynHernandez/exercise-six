@@ -1,9 +1,57 @@
-import React from "react";
+import React, {useCallback,useEffect, useState} from "react";
+import {useNavigate} from "react-router";
+import {getAuth, createUserwithEmailAndPassword} from "firebase/auth";
+import CreateUserForm from "../components/CreateUserForm";
+import Header from "../components/Header";
 
-function CreateUserPage(){
-return<div></div>
 
+function CreateUserPage({isLoggedIn, setIsLoggedIn,setUserInformation}){
+    const [errors,setErrors]=  useState();
+    const navigate = useNavigate();
 
+    useEffect(()=> {
+        if(isLoggedIn) navigate("/");
+    }, [isLoggedIn]); 
+
+    const signUpUser= useCallback(
+        (e) => {
+            e.preventDefault();
+            const email= e.currentTarget.email.value; 
+            const password=e.currentTarget.password.value; 
+            const auth= getAuth(); 
+
+createUserwithEmailAndPassword(auth,email, password)
+    .then((userCredential)=> {
+        const user= userCredential.user;
+        setIsLoggedIn(true); 
+        setUserInformation({
+            email: user.email,
+            displayName: user.displayName, 
+            uid:user.uid,
+            accessToken:user.accessToken,
+        }); 
+        setErrors();
+    })
+    .catch((error)=> {
+        const errorCode= error.code;
+        const errorMessage= error.message; 
+        console.warn({error, errorCode, errorMessage});
+        setErrors(errorMessage);
+    });
+},
+    [setErrors, setIsLoggedIn, setUserInformation]
+
+); 
+
+return(
+    <>
+    <Header setLoggedIn={setLoggedIn} setUserInformation= {setUserInformation}/> 
+    <div className="PageWrapper">
+        <h1> Create User</h1>
+        <CreateUserForm signUpUser={signUpUser} /> 
+        <p>{errors}</p>
+    </div>
+    </>
+);
 }
-
 export default CreateUserPage;  
