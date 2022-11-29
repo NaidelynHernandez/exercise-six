@@ -13,11 +13,7 @@ function LoginPage({isLoggedIn, setIsLoggedIn, setUserInformation}) {
     }, [isLoggedIn]); 
 
 
-    const loginUser =useCallback((e)=> {
-        e.preventDefault();
-    }, []); 
-
-    const signUpUser= useCallback(
+    const loginUser= useCallback(
         (e) => {
             e.preventDefault();
             const email= e.currentTarget.email.value; 
