@@ -39,6 +39,4 @@ function Header({isLoggedIn, setIsLoggedIn, setUserInformation}){
     ); 
     }
 
-
-
 export default Header; 

@@ -1,13 +1,13 @@
-import React, {useCallback, useEffect} from "react"; 
+import React, {useCallback, useEffect, useState} from "react"; 
 import { useNavigate } from "react-router";
 import LoginForm from "../components/LoginForm";
 import Header from "../components/Header";
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 
-
 function LoginPage({isLoggedIn, setIsLoggedIn, setUserInformation}) {
     const navigate = useNavigate();
-    
+    const [errors,setErrors]=  useState();
+
     useEffect(()=> {
         if(isLoggedIn) navigate("/");
     }, [isLoggedIn]); 

@@ -1,6 +1,6 @@
 import React, {useCallback,useEffect, useState} from "react";
 import {useNavigate} from "react-router";
-import {getAuth, createUserwithEmailAndPassword} from "firebase/auth";
+import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 import CreateUserForm from "../components/CreateUserForm";
 import Header from "../components/Header";
 
@@ -13,6 +13,7 @@ function CreateUserPage({isLoggedIn, setIsLoggedIn,setUserInformation}){
         if(isLoggedIn) navigate("/");
     }, [isLoggedIn]); 
 
+
     const signUpUser= useCallback(
         (e) => {
             e.preventDefault();
@@ -20,7 +21,7 @@ function CreateUserPage({isLoggedIn, setIsLoggedIn,setUserInformation}){
             const password=e.currentTarget.password.value; 
             const auth= getAuth(); 
 
-createUserwithEmailAndPassword(auth,email, password)
+createUserWithEmailAndPassword(auth,email, password)
     .then((userCredential)=> {
         const user= userCredential.user;
         setIsLoggedIn(true); 
@@ -40,12 +41,11 @@ createUserwithEmailAndPassword(auth,email, password)
     });
 },
     [setErrors, setIsLoggedIn, setUserInformation]
-
 ); 
 
 return(
     <>
-    <Header setIsLoggedIn={setIsLoggedIn} setUserInformation= {setUserInformation}/> 
+    <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserInformation= {setUserInformation}/> 
     <div className="PageWrapper">
         <h1> Create User</h1>
         <CreateUserForm signUpUser={signUpUser} /> 
