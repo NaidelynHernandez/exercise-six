@@ -45,7 +45,7 @@ createUserwithEmailAndPassword(auth,email, password)
 
 return(
     <>
-    <Header setLoggedIn={setLoggedIn} setUserInformation= {setUserInformation}/> 
+    <Header setIsLoggedIn={setIsLoggedIn} setUserInformation= {setUserInformation}/> 
     <div className="PageWrapper">
         <h1> Create User</h1>
         <CreateUserForm signUpUser={signUpUser} /> 

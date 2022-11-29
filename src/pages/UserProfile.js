@@ -2,7 +2,13 @@ import React, {useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 
-function UserProfilePage({isLoading, isLoggedIn, userInformation}) {
+function UserProfilePage({
+    isLoading,
+    isLoggedIn,
+    setLoggedIn, 
+    setUserInformation,
+    userInformation
+}) {
     const navigate = useNavigate();
 
      useEffect(()=> {
@@ -11,7 +17,7 @@ function UserProfilePage({isLoading, isLoggedIn, userInformation}) {
     
     return(
         <>
-    <Header setLoggedIn={setLoggedIn} setUserInformation= {setUserInformation}/> 
+    <Header isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} setUserInformation= {setUserInformation}/> 
             <div className="PageWrapper">
             <h1> User Profile</h1>
             <p><strong> Display Name: </strong>{userInformation.displayName}</p>
